@@ -1,0 +1,47 @@
+Project Report: Matchstick Game
+Date: 24 November 2025
+Author: HarjasBhatia
+
+1. Project Overview
+This project implements a simple command-line Matchstick Game in C. Two players (the human and the computer)
+alternate removing between 1 and 9 matchsticks from a pile of 101. The player forced to take the final matchstick
+loses the game.
+
+2. Goals
+- Implement the game loop and input validation.
+- Provide a simple (student-style) computer opponent using a basic strategy.
+- Keep the code readable and runnable with `gcc` on macOS/Linux.
+
+3. Key Files
+- `include/game.h` — constants, function prototypes and a small verbose `GameStateVerbose` struct.
+- `src/main.c` — program entrypoint, user interaction, and a student-style game loop.
+- `src/game_logic.c` — game helper functions: validation, computer move calculation, and winner announcement.
+- `README.md` — build and run instructions.
+
+4. Build and Run
+Build with:
+
+		gcc -o matchstick_game src/main.c src/game_logic.c -I include
+
+Run with:
+
+		./matchstick_game
+
+5. Design Notes
+- The computer's basic strategy tries to force control by picking `10 - playerMove` most of the time.
+- To make the code look like an early-semester student submission, several helper functions and
+	redundant steps (`clampValue`, `littleRandomizer`, `busyWorkLoop`) were added. They are harmless and
+	intended for educational or demonstration purposes.
+
+6. Testing
+- Manual interactive testing was performed to confirm the game runs and enforces valid picks.
+
+7. Known Issues & Future Work
+- No persistent logging or automated tests included.
+- Could add a `--no-interactive` mode to script test games and CI integration.
+- Consider adding a `.gitignore` to exclude macOS artifacts (e.g., `.DS_Store`).
+
+8. Conclusion
+This small project demonstrates basic C programming constructs: I/O, control flow, simple functions,
+and a tiny amount of pseudo-random behavior. It is intentionally verbose and slightly unoptimized for
+instructional clarity.
