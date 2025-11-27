@@ -11,27 +11,28 @@ int main() {
     char playAgain;
     
     srand(time(NULL));
-    
-    printf("=== ENHANCED MATCHSTICK GAME ===\n");
-    printf("Rules:\n");
-    printf("- There are %d matchsticks\n", TOTAL_MATCHSTICKS);
-    printf("- Each turn, pick %d to %d matchsticks\n", MIN_PICK, MAX_PICK);
-    printf("- Player who takes the last matchstick LOSES!\n");
-    printf("- Winning Strategy: Try to leave multiples of %d after your turn\n\n", MAX_PICK + 1);
-    
+
+    printf("=== MATCHSTICK GAME (simple - Sem-1 style) ===\n");
+    printf("There are %d matchsticks. On each turn pick %d to %d.\n", TOTAL_MATCHSTICKS, MIN_PICK, MAX_PICK);
+    printf("Whoever picks the LAST matchstick loses.\n\n");
+
     do {
         matchsticks = TOTAL_MATCHSTICKS;
-        playerTurn = (rand() % 2);
-        
-        if (playerTurn) {
-            printf("\n>>> You start first! <<<\n");
+
+        printf("Do you want to start first? (y/n): ");
+        char answer = 'y';
+        scanf(" %c", &answer);
+
+        if (answer == 'y' || answer == 'Y') {
+            playerTurn = 1; /* player starts */
+            printf("\nYou will start first.\n");
         } else {
-            printf("\n>>> Computer starts first! <<<\n");
+            playerTurn = 0; /* computer starts */
+            printf("\nComputer will start first.\n");
         }
         
         while (matchsticks > 0) {
             printf("\nRemaining matchsticks: %d\n", matchsticks);
-            displayMatchsticks(matchsticks);
             
             if (playerTurn) {
                 move = getUserMove(matchsticks);
@@ -57,10 +58,10 @@ int main() {
         }
         
         displayGameStats(playerWins, computerWins);
-        
+
         printf("\nPlay again? (y/n): ");
         scanf(" %c", &playAgain);
-        
+
     } while (playAgain == 'y' || playAgain == 'Y');
     
     printf("\nThanks for playing!\n");

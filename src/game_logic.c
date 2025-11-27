@@ -3,22 +3,6 @@
 #include <time.h>
 #include "matchstick_game.h"
 
-void displayMatchsticks(int count) {
-    if (count > 20) {
-        printf("Matchsticks: ");
-        for (int i = 0; i < 20; i++) {
-            printf("|");
-        }
-        printf("... (%d total)\n", count);
-    } else {
-        printf("Matchsticks: ");
-        for (int i = 0; i < count; i++) {
-            printf("|");
-        }
-        printf(" (%d)\n", count);
-    }
-}
-
 int isValidMove(int move, int remaining) {
     return (move >= MIN_PICK && move <= MAX_PICK && move <= remaining);
 }
@@ -48,36 +32,26 @@ int getUserMove(int remaining) {
 
 int getComputerMove(int remaining) {
     int move;
-    int optimalMove;
-    
-    printf("\nComputer's turn...\n");
-    
-    optimalMove = remaining % (MAX_PICK + 1);
-    
-    if (optimalMove == 0) {
-        if (rand() % 3 == 0 && remaining > MAX_PICK) {
-            move = (rand() % MAX_PICK) + 1;
+
+    /* misere version (last pick loses) strategy:
+       To force the opponent to take the last matchstick, try to leave
+       a pile size that is 1 (mod MAX_PICK+1) after this move.
+    */
+    int target = (remaining - 1) % (MAX_PICK + 1);
+    if (target == 0) {
+        if (remaining <= MAX_PICK) {
+            move = remaining; /* take all when only few remain */
         } else {
-            move = (rand() % MAX_PICK) + 1;
-            if (move > remaining) move = remaining;
+            move = 1; /* small, simple choice */
         }
     } else {
-        move = optimalMove;
-        
-        if (rand() % 100 < 15 && remaining > move + MAX_PICK) {
-            int alternateMove = (rand() % MAX_PICK) + 1;
-            if (alternateMove != move && isValidMove(alternateMove, remaining)) {
-                move = alternateMove;
-            }
-        }
+        move = target; /* leave (modulus) 1 for opponent */
     }
-    
+
     if (!isValidMove(move, remaining)) {
         move = (remaining > MAX_PICK) ? MAX_PICK : remaining;
     }
-    
-    for (int i = 0; i < 100000000; i++);
-    
+
     return move;
 }
 
