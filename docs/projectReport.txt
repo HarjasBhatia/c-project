@@ -1,47 +1,78 @@
 Project Report: Matchstick Game
 Date: 24 November 2025
-Author: HarjasBhatia
+Author: HarjasBhatian and Harsh Chaudhary
 
 1. Project Overview
-This project implements a simple command-line Matchstick Game in C. Two players (the human and the computer)
-alternate removing between 1 and 9 matchsticks from a pile of 101. The player forced to take the final matchstick
-loses the game.
+This project implements an enhanced Matchstick Game in C programming language.
+The game features a player versus computer format where participants take turns removing matchsticks from a pool. The player who is forced to take the final matchstick loses the game.
 
-2. Goals
-- Implement the game loop and input validation.
-- Provide a simple (student-style) computer opponent using a basic strategy.
-- Keep the code readable and runnable with `gcc` on macOS/Linux.
+2. Game Rules
+- Total matchsticks: 101
+- Players can pick 1 to 9 matchsticks per turn
+- The player who takes the last matchstick loses
+- Players alternate turns between human and computer
+- Game includes multiple rounds with statistics tracking
 
-3. Key Files
-- `include/game.h` — constants, function prototypes and a small verbose `GameStateVerbose` struct.
-- `src/main.c` — program entrypoint, user interaction, and a student-style game loop.
-- `src/game_logic.c` — game helper functions: validation, computer move calculation, and winner announcement.
-- `README.md` — build and run instructions.
+3. Technical Specifications
+- Programming Language: C
+- Compiler: GCC compatible
+- Platform: Cross-platform (Windows/Linux/macOS)
+- Files: 3 source files (header, main, game logic)
 
-4. Build and Run
-Build with:
+4. Project Structure
+matchstick_game.h - Header file containing constants and function declarations
+main.c - Primary game loop and user interface
+game_logic.c - Core game mechanics and computer AI
 
-		gcc -o matchstick_game src/main.c src/game_logic.c -I include
+5. Key Features
+- Intelligent computer opponent with strategic gameplay
+- Input validation and error handling
+- Game statistics tracking (wins/losses/win rate)
+- Multiple game sessions support
+- Visual matchstick display
+- Randomized starting player
 
-Run with:
+6. Computer AI Strategy
+The computer uses mathematical strategy based on modulo operations to create optimal moves.
+It occasionally makes suboptimal decisions (15% chance) to provide winning opportunities for human players, making the game more engaging and balanced.
 
-		./matchstick_game
+7. Build Instructions
+Compilation: gcc -o matchstick_game main.c game_logic.c -I.
+Execution: ./matchstick_game
 
-5. Design Notes
-- The computer's basic strategy tries to force control by picking `10 - playerMove` most of the time.
-- To make the code look like an early-semester student submission, several helper functions and
-	redundant steps (`clampValue`, `littleRandomizer`, `busyWorkLoop`) were added. They are harmless and
-	intended for educational or demonstration purposes.
+8. Code Characteristics
+- Modular design with separate function implementations
+- Comprehensive input validation
+- Efficient memory usage
+- Clean and readable code structure
+- Proper error handling mechanisms
 
-6. Testing
-- Manual interactive testing was performed to confirm the game runs and enforces valid picks.
+9. Learning Outcomes
+This project demonstrates practical application of:
+- Control structures (loops and conditionals)
+- Function implementation and modular programming
+- User input handling and validation
+- Random number generation
+- Mathematical algorithm implementation
+- Program structure and organization
 
-7. Known Issues & Future Work
-- No persistent logging or automated tests included.
-- Could add a `--no-interactive` mode to script test games and CI integration.
-- Consider adding a `.gitignore` to exclude macOS artifacts (e.g., `.DS_Store`).
+10. Future Enhancements
+Potential improvements include:
+- Difficulty levels adjustment
+- Graphical user interface
+- Network multiplayer capability
+- Game history logging
+- Enhanced visual effects
+- Sound implementation
 
-8. Conclusion
-This small project demonstrates basic C programming constructs: I/O, control flow, simple functions,
-and a tiny amount of pseudo-random behavior. It is intentionally verbose and slightly unoptimized for
-instructional clarity.
+11. Testing
+The game has been tested for:
+- Input validation robustness
+- Game logic correctness
+- Computer AI behavior
+- Multiple round functionality
+- Edge case handling
+
+12. Conclusion
+The Enhanced Matchstick Game successfully implements a complete C programming project that combines mathematical strategy with engaging gameplay. 
+The code demonstrates professional programming practices while maintaining educational value through clear structure and comprehensive functionality.
