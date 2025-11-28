@@ -24,10 +24,10 @@ int main() {
         scanf(" %c", &answer);
 
         if (answer == 'y' || answer == 'Y') {
-            playerTurn = 1; /* player starts */
+            playerTurn = 1;
             printf("\nYou will start first.\n");
         } else {
-            playerTurn = 0; /* computer starts */
+            playerTurn = 0;
             printf("\nComputer will start first.\n");
         }
         

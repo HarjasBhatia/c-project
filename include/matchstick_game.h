@@ -5,7 +5,6 @@
 #define MAX_PICK 9
 #define MIN_PICK 1
 
-void displayMatchsticks(int count);
 int getUserMove(int remaining);
 int getComputerMove(int remaining);
 int isValidMove(int move, int remaining);

@@ -33,19 +33,15 @@ int getUserMove(int remaining) {
 int getComputerMove(int remaining) {
     int move;
 
-    /* misere version (last pick loses) strategy:
-       To force the opponent to take the last matchstick, try to leave
-       a pile size that is 1 (mod MAX_PICK+1) after this move.
-    */
     int target = (remaining - 1) % (MAX_PICK + 1);
     if (target == 0) {
         if (remaining <= MAX_PICK) {
-            move = remaining; /* take all when only few remain */
+            move = remaining;
         } else {
-            move = 1; /* small, simple choice */
+            move = 1;
         }
     } else {
-        move = target; /* leave (modulus) 1 for opponent */
+        move = target;
     }
 
     if (!isValidMove(move, remaining)) {
